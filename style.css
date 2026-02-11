@@ -1,0 +1,1665 @@
+:root {
+    /* Paleta de Colores Minimalista & Corporativa */
+    --primary: #004e92;       /* Azul AK Consulting */
+    --accent: #2193b0;        /* Celeste degradado */
+    --dark: #1e293b;          /* Gris oscuro texto */
+    --light-text: #051b39;    /* Gris medio */
+    --bg-white: #ffffff;
+    --bg-blue-tint: #f0f4f8;  /* Blanco casi azul para fondos */
+    --glass: rgba(255, 255, 255, 0.7);
+    --shadow: 0 10px 30px -10px rgba(0, 78, 146, 0.15);
+    --border-light:  #878787;
+    --gray-full-light:#dcdcdc;
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark);
+    background-color: var(--bg-white);
+    overflow: hidden; /* Importante para el contenedor custom */
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Monserrat', sans-serif; /* Toque elegante para títulos */
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* --- NAVIGATION --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.logo img{
+    width: 80px;
+}
+
+.ak-symbol {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.brand { font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; }
+.tagline { font-size: 0.6rem; color: var(--light-text); text-transform: uppercase; }
+
+nav ul { display: flex; gap: 2rem; align-items: center; }
+nav a { font-size: 1.0rem; font-weight: 500; position: relative; }
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: var(--primary);
+    transition: 0.3s;
+}
+
+nav a:hover::after { width: 100%; }
+
+.btn-contact-nav {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--primary);
+    border-radius: 50px;
+    color: var(--primary);
+}
+
+.btn-contact-nav:hover { background: var(--primary); color: white; }
+.btn-contact-nav::after { display: none; }
+
+.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; z-index: 1001;       /* Para que esté siempre encima del menú abierto (que es 999) */
+    position: relative;  /* Necesario para que el z-index funcione */
+    transition: 0.3s;}
+
+/* --- SCROLL SNAP CONTAINER --- */
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.section {
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    overflow: visible;
+}
+
+.container {
+
+    max-width: 1400px;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- HERO SECTION --- */
+/* --- HERO SECTION --- */
+#hero {
+    /* Si no te carga con .jpeg, prueba cambiar a .jpg */
+    background-image: url("img/image-background-hero.jpeg"); 
+    background-size: cover;
+    background-position: top; 
+    color: white;
+    
+    /* CAMBIO CLAVE AQUÍ: */
+    display: flex; /* Aseguramos que sea flex */
+    flex-direction: column; /* Apilamos verticalmente */
+    
+    /* 1. Centrado Vertical (Eje Principal en columna) */
+    justify-content: center; 
+    
+    /* 2. Alineación a la Izquierda (Eje Cruzado en columna) */
+    align-items: flex-start; 
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5));
+    z-index: 1;
+}
+
+/* Busca .hero-content y verifica esto: */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1300px;
+    padding-left: 22%; /* Esto le da el espacio desde la izquierda */
+    text-align: left;  /* Asegura que el texto interno también mire a la izquierda */
+}
+
+.hero-top-tag {
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-shadow:0px 0px 12px black;
+}
+
+.hero-content p {
+    text-shadow:0px 0px 10px black;
+
+}
+
+.hero-content .hero-top-tag{
+    text-align: start;
+}
+
+.hero-desc {
+    text-align: start;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #e2e8f0;
+    max-width: 600px;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: white;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+}
+
+.btn-outline:hover { background: white; color: var(--primary); }
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 0.7;
+}
+
+.mouse {
+    width: 26px; height: 40px; border: 2px solid white; border-radius: 20px; position: relative;
+}
+.wheel {
+    width: 4px; height: 8px; background: white; border-radius: 2px;
+    position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    animation: scroll 1.5s infinite;
+}
+
+@keyframes scroll {
+    0% { top: 6px; opacity: 1; }
+    100% { top: 18px; opacity: 0; }
+}
+
+/* --- ABOUT SECTION --- */
+/* --- ABOUT SECTION (REDISEÑO GRANDE) --- */
+#about {
+    background-color: var(--bg-white);
+    padding-top: 100px;
+    padding-bottom: 100px;
+    height: auto; /* Permite que crezca todo lo necesario */
+    min-height: 100vh;
+}
+
+.about-intro-block h2{
+    font-size: 2.8rem;
+    padding-bottom: .8rem;
+}
+
+/* 1. Intro */
+.about-intro-block {
+    max-width: 900px;
+    margin: 0 auto 5rem auto; /* Separación grande abajo */
+    text-align: center;
+}
+
+.big-desc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--light-text);
+}
+
+/* 2. Estructura de Filas (Zig-Zag) */
+.about-row {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    max-width: 1400px;
+}
+
+.spacer-large {
+    margin-top: 8rem; /* Separación extra grande entre secciones Misión/Visión */
+}
+
+/* Para invertir el orden (Texto Izq - Foto Der) */
+
+/* Columnas */
+
+
+.about-img-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 652px;
+}
+
+.about-img-col img {
+    width: 100%;
+    height: 350px; /* Altura uniforme para las fotos */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+
+
+/* 3. Estilos Específicos Texto */
+.about-subtitle {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.about-p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--dark);
+    text-align: justify; /* Para que se vea bloque limpio */
+}
+
+
+/* 4. Bio Director */
+.director-row {
+    background-color: var(--bg-blue-tint); /* Un fondo sutil para destacar al director */
+    padding: 3rem;
+    border-radius: 20px;
+    max-width: 100%;
+    display: flex;
+    margin: 0 4rem;
+}
+
+
+.director-bio-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.8;
+    border-left: 4px solid var(--accent);
+    padding-left: 1.5rem;
+}
+
+.about-text-col {
+    max-width: 684px;
+    flex: 1;
+    padding: 0 1rem 0 1rem;
+}
+
+.director-img-container img {
+    width: 250px; /* Foto del director más tipo retrato */
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.director-img-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    min-width: 380px;
+}
+
+.director-caption {
+    text-align: center;
+}
+
+.director-caption h4 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.director-caption span {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    font-weight: 600;
+}
+
+/* 5. Lista de Valores */
+.values-list-big {
+    list-style: none;
+}
+
+.values-list-big li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--dark);
+}
+
+.values-list-big li i {
+    color: var(--accent);
+    font-size: 1.3rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .about-row, .reverse-row {
+        flex-direction: column; /* En móvil todo uno abajo del otro */
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .about-p { text-align: center; }
+    
+    .director-row { padding: 1.5rem; }
+    
+    .about-img-col img { height: auto; max-height: 300px; }
+    
+    .spacer-large { margin-top: 4rem; }
+    
+    .director-bio-text { 
+        border-left: none; 
+        border-top: 4px solid var(--accent);
+        padding-left: 0;
+        padding-top: 1rem;
+    }
+}
+/* --- SERVICES SECTION --- */
+/* --- SERVICES SECTION (Minimalista & Estático) --- */
+/* --- SERVICES SECTION (Rediseño Grande & Hero) --- */
+#services { 
+    background-color: var(--bg-blue-tint);
+    padding: 100px 0;
+    min-height: 100vh;
+}
+
+/* Cabecera de Sección */
+.services-intro {
+    text-align: center;
+    max-width: 900px; /* Un poco más ancho */
+    margin: 0 auto 5rem auto;
+}
+
+.intro-tag {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.services-intro h2 {
+    font-size: 3rem; /* Título más grande */
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.separator-line {
+    width: 80px;
+    height: 5px;
+    background: var(--accent);
+    margin: 0 auto 1.5rem auto;
+    border-radius: 2px;
+}
+
+.services-intro p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+/* Contenedor de Tarjetas */
+.services-wrapper {
+    display: flex; 
+    gap: 4rem; /* Más separación entre tarjetas */
+    align-items: stretch;
+    width: 100%;
+    max-width: 1400px; /* Permitimos que se expandan más */
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Tarjeta Estática */
+.service-card {
+    flex: 1;
+    background: white;
+    border-radius: 20px; /* Bordes más redondeados */
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08); /* Sombra más fuerte */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    /* Eliminamos el borde superior de color porque la imagen ahora manda */
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+}
+
+/* --- PORTADA HERO (CAMBIO SOLICITADO) --- */
+.service-cover {
+    width: 100%;
+    height: 200px; /* Imagen mucho más alta */
+    padding: 0; /* SIN Relleno: La imagen toca los bordes */
+    position: relative;
+    border-bottom: 4px solid var(--primary); /* El detalle de color pasa abajo de la foto */
+}
+
+.service-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Llena todo el espacio (recorta si es necesario para llenar) */
+    object-position: center;
+}
+
+/* Título de la Tarjeta */
+.service-header-box {
+    padding: 2rem 2.5rem 1rem 2.5rem;
+    text-align: center;
+    background: white;
+}
+
+.title-card-service {
+    font-size: 1.8rem; /* Título interno más grande */
+    color: var(--dark);
+    font-weight: 800;
+}
+
+/* Cuerpo */
+.service-body-box {
+    padding: 1rem 2.5rem 3rem 2.5rem;
+    background: white;
+    flex-grow: 1;
+}
+
+/* Grilla de Ítems */
+.items-list-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    row-gap: 1.5rem; /* Más aire entre filas */
+    margin-top: 1rem;
+}
+
+/* --- ÍTEMS GRANDES (CAMBIO SOLICITADO) --- */
+.item-service-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.item-service-row img {
+    width: 48px;  /* LOGOS MUCHO MÁS GRANDES */
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.item-service-row p {
+    font-size: 1.15rem; /* FUENTE MÁS GRANDE */
+    color: var(--dark); /* Color más oscuro para mejor lectura */
+    line-height: 1.4;
+    font-weight: 600;
+    text-align: start;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .services-wrapper {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+    
+    .items-list-container {
+        grid-template-columns: 1fr; 
+    }
+    
+    .service-cover {
+        height: 220px;
+    }
+}
+
+
+/* --- SECCIÓN FORMACIÓN (TRAINING) --- */
+#training {
+    background-color: var(--bg-blue-tint); /* Fondo suave para diferenciar */
+    padding: 100px 0;
+    min-height: 100vh;
+}
+
+.training-desc {
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+}
+
+#training h2{
+    text-align: center;
+    font-size: 2.4rem;
+    padding-bottom: .8rem;
+}
+
+#training p{
+    font-size: 1.2rem;
+
+    text-align: center;
+}
+
+/* Contenedor Principal del Carrusel */
+.training-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1250px; /* Ancho suficiente para 3 cajas + gaps */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pista deslizante */
+.training-track {
+    display: flex;
+    gap: 2rem; /* Espacio entre tarjetas */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 2rem 1rem;
+    width: 100%;
+    scrollbar-width: none; /* Ocultar scrollbar Firefox */
+}
+
+.training-track::-webkit-scrollbar {
+    display: none; /* Ocultar scrollbar Chrome */
+}
+
+/* --- TARJETA DE CURSO (MEDIDAS EXACTAS) --- */
+.training-card {
+    flex: 0 0 688px; /* Ancho fijo solicitado */
+    height: 480px;   /* Alto fijo solicitado */
+    
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+    scroll-snap-align: center; /* Se centra al soltar */
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Imagen Superior */
+.t-img-box {
+    width: 100%;
+    height: 280px; /* Alto solicitado */
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.t-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+
+/* Información del Curso */
+.t-info-box {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.t-info-box h4 {
+    font-size: 1.1rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+.t-info-box p {
+    font-size: 1.2rem;
+    color: var(--light-text);
+    line-height: 1.5;
+    margin: 0;
+    text-align: start !important;
+}
+
+/* --- BOTONES DEL CARRUSEL --- */
+.t-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    color: var(--primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.t-prev { left: -60px; }
+.t-next { right: -60px; }
+
+@media (max-width: 1300px) {
+    /* TABLET: Ajuste para pantallas donde no caben 3 centradas */
+
+    .training-carousel-wrapper {
+        padding: 0;
+        max-width: 100%;
+        justify-content: flex-start; /* Alineación izquierda */
+    }
+
+    .training-track {
+        /* CRUCIAL: Cambiamos de center a flex-start para que la caja 1 no se corte */
+        justify-content: flex-start; 
+        padding-left: 20px; /* Margen izquierdo seguro */
+        padding-right: 20px;
+    }
+
+    /* Botones visibles sobre las tarjetas */
+    .t-btn {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Los metemos adentro de la pantalla */
+    .t-prev { left: 15px; }
+    .t-next { right: 15px; }
+
+}
+
+@media (max-width: 1410px) {
+
+}
+
+@media (max-width: 1350px) {
+    
+    /* 1. MOSTRAR FLECHAS (Corregido: antes estaba display: none) */
+    .t-btn { 
+        display: flex; /* ¡Las hacemos visibles! */
+        width: 40px;   /* Un poco más pequeñas */
+        height: 40px;
+        background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+        backdrop-filter: blur(4px);
+    }
+
+    /* 2. REPOSICIONAR FLECHAS (Para que no se salgan de la pantalla) */
+    .t-prev { left: 10px; }  /* Pegada al borde izquierdo interior */
+    .t-next { right: 10px; } /* Pegada al borde derecho interior */
+
+    /* 3. AJUSTE DEL CONTENEDOR */
+    .training-carousel-wrapper { 
+        padding: 0; 
+        max-width: 800px; /* Usar todo el ancho disponible */
+    }
+}
+@media (max-width: 768px) {
+    /* MÓVIL: Mismo comportamiento, asegurando scroll */
+    
+    .training-track {
+        gap: 1.5rem;
+        padding-left: 15px;
+    }
+    
+    /* Botones un poco más pequeños en celular */
+    .t-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .t-prev { left: 10px; }
+    .t-next { right: 10px; }
+    
+    /* Títulos más pequeños */
+    #training h2 { font-size: 2rem; }
+}
+/* --- WORKS SECTION --- */
+
+#works {
+    padding: 100px 0;
+    min-height: 100vh;
+    background-color: var(--bg-white);
+}
+
+#works  h2{
+    text-align: center;
+    padding-bottom: .8rem;
+    font-size: 2.4rem;
+}
+.works-desc {
+    text-align: center;
+}
+.works-desc {
+    max-width: 800px;
+    margin: 0 auto 5rem auto;
+}
+
+/* --- CONTENEDOR GRILLA (NUEVO) --- */
+.works-display-grid {
+    display: grid;
+    /* Creamos 2 columnas de ancho igual */
+    grid-template-columns: repeat(2, 1fr);
+    /* Espacio generoso entre filas y columnas */
+    gap: 4rem; 
+    row-gap: 5rem;
+    
+    width: 100%;
+    max-width: 1100px; /* Ancho suficiente para que entren las 2 tarjetas de 470px + gap */
+    margin: 0 auto;
+    justify-items: center; /* Centra las tarjetas dentro de su celda */
+}
+
+/* --- TARJETA DE PROYECTO (470px x 570px) --- */
+.card-work-finished {
+    width: 470px;  /* Ancho FIJO exacto */
+    height: 570px; /* Alto FIJO exacto */
+    
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.02);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* --- IMAGEN SUPERIOR (360px Alto) --- */
+.img-content {
+    width: 100%;
+    height: 360px; /* Alto solicitado */
+    overflow: hidden;
+    background: #f8f9fa;
+    border-bottom: 4px solid var(--accent);
+}
+
+.img-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+
+
+/* --- TEXTO INFERIOR --- */
+.content-info-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.title-card-info {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+
+.desc-info-card {
+    font-size: 1rem;
+    color: var(--light-text);
+    line-height: 1.5;
+}
+
+/* --- CLIENTES AL FINAL --- */
+.clients-section-bottom {
+    margin-top: 8rem; /* Buena separación de la grilla */
+    text-align: center;
+}
+
+.clients-title {
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.clients-desc {
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    color: var(--light-text);
+    font-size: 1rem;
+}
+
+.clients-slider {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    align-items: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+    /* Si la pantalla baja de 1100px, pasamos a 1 sola columna */
+    .works-display-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 550px) {
+    /* En móviles muy chicos, la tarjeta se adapta al ancho de pantalla */
+    .card-work-finished {
+        width: 100%;
+        max-width: 470px;
+        height: auto;
+        min-height: 550px;
+    }
+}
+/* --- CONTACT SECTION --- */
+#contact {
+    background: linear-gradient(135deg, #f0f4f8 0%, #dbeafe 100%);
+}
+
+#contact .container{
+    max-width: 1800px !important;
+}
+
+.contact-layout {
+    align-items: flex-start; 
+    margin: 0 2rem;
+}
+
+#contact h2{
+    font-size: 3rem;
+    text-align: center;
+}
+
+.contact-info { 
+    display: flex;
+    width: 100%; 
+    margin-top: 1rem;
+    gap: 1.4rem;
+    justify-content: start;
+}
+.text-desc-contact {
+    display: flex;
+    flex-direction: column;
+    max-width: 340px;
+}
+
+.text-desc-contact .section-title , p{
+    text-align: start;
+}
+.contact-details { margin-top: .2rem; }
+
+.c-item {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; font-size: 1.1rem;
+}
+
+.c-item i { color: var(--primary); width: 25px; }
+
+.social-btns { display: flex; gap: 1rem; margin-top: .4rem; }
+.social-link {
+    width: 45px; height: 45px; background: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.social-link:hover { background: var(--primary); color: white; transform: rotate(360deg); }
+
+.glass-form {
+
+    padding: 3rem;
+    border-radius: 20px;
+    width: 100%;    
+}
+
+.glass-form h3 { margin-bottom: 1.5rem; color: var(--primary); }
+
+.input-group { position: relative; margin-bottom: 1.5rem; }
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    background: transparent;
+    font-size: 1rem;
+    outline: none;
+}
+.input-group label {
+    position: absolute; left: 1rem; top: 1rem; color: #94a3b8; transition: 0.3s; pointer-events: none;
+}
+.input-group input:focus ~ label, .input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label, .input-group textarea:not(:placeholder-shown) ~ label {
+    top: -10px; left: 10px; font-size: 0.8rem; background: white; padding: 0 5px; color: var(--primary);
+}
+
+.btn-download{
+    margin-top: 1.6rem;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: white;
+    border-radius: 12px;
+    padding:8px 14px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    position: absolute; bottom: 20px; width: 100%; text-align: center; font-size: 0.8rem; color: var(--light-text);gap: .5rem;
+}
+footer p{
+    text-align: center;
+}
+.by-design{
+    color: #285AEB;
+    text-decoration: solid;
+}
+
+@media (max-width: 824px){
+    .training-carousel-wrapper{
+        max-width: 420px;
+    }
+
+    .about-text-col{
+        max-width: 64%;
+    }
+}
+
+@media (max-width:1416px){
+    .about-row{
+        max-width: 1000px;
+    }
+    .about-p{
+        max-width: 520px;
+    }
+    .director-bio-text{
+        max-width: 480px;
+    }
+    .about-text-col{
+        max-width: 560px;
+    }
+}
+
+@media (max-width: 950px){
+    .about-intro-block{
+        max-width: 82%;
+    }
+}
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+    .split-layout { flex-direction: column; gap: 2rem; }
+    .hero-content { padding:0 1rem 0 1rem ; text-align: center; margin: 0 auto; justify-content: center; display: flex; flex-direction: column; align-items: center; }
+    .services-wrapper { flex-direction: column; }
+    .works-grid { grid-template-columns: 1fr; }
+    .hero-content p {text-align: center;}
+    
+    .menu-toggle { display: block; }
+    nav ul {
+        position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+        background: white; flex-direction: column; justify-content: center;
+        transition: 0.5s; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    nav ul.active { right: 0; }
+    
+    /* En móvil, deshabilitar snap scroll forzoso para mejor UX o mantenerlo */
+    .section { height: auto; padding: 100px 0; }
+    .scroll-container { scroll-snap-type: none; height: auto; overflow: visible; }
+    #hero { height: 100vh; }
+
+    /* Correcciones adicionales de márgenes móviles */
+    .contact-info { width: 100%; padding-right: 0; text-align: center; }
+    .contact-details { justify-content: center; }
+    .c-item { justify-content: center; }
+    .social-btns { justify-content: center; }
+
+    body, html {
+        overflow-y: auto !important; /* Permite bajar y subir */
+        overflow-x: hidden; /* Evita desplazamiento lateral indeseado */
+        height: auto !important;
+    }
+
+    .scroll-container { 
+        height: auto; 
+        overflow: visible; 
+        scroll-snap-type: none;
+    }
+
+
+
+    /* 1. SECCIÓN NOSOTROS (ABOUT) */
+    .about-row, .reverse-row {
+        flex-direction: column; /* Apilar verticalmente */
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .about-text-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* Ocupar todo el ancho */
+    }
+
+    .spacer-large .about-img-col{
+        display: none;
+    }
+
+    .about-img-col img { 
+        height: auto; 
+        max-height: 400px; /* Controlar altura de fotos */
+    }
+    
+    .about-p { text-align: center; } /* Texto centrado para equilibrio */
+    
+    .director-row { padding: 2rem; }
+    
+    .values-list-big li {
+        justify-content: center; /* Centrar lista de valores */
+    }
+    /* 2. SECCIÓN SERVICIOS (CAJAS Y GRID INTERNO) */
+    .services-wrapper {
+        flex-direction: column; /* Una caja debajo de la otra */
+        gap: 3rem;
+        padding: 0 1rem;
+    }
+
+    .service-card {
+        width: 100%; /* Ancho completo */
+        /* Eliminamos ancho fijo si hubiese */
+    }
+
+    .service-cover {
+        height: 240px; /* Ajuste proporcional de altura */
+    }
+    
+    .items-list-container {
+        /* En tablet mantenemos 2 columnas si cabe, o pasamos a 1 */
+        grid-template-columns: 1fr 1fr; 
+        gap: 1rem;
+    }
+
+
+    /* 3. SECCIÓN FORMACIÓN (CARRUSEL) */
+    .training-carousel-wrapper {
+        padding: 0; /* Aprovechar espacio */
+    }
+    
+    .training-track {
+        padding-left: 1rem; /* Espacio para scroll */
+    }
+    
+    .training-card {
+        /* Reducir un poco el ancho fijo para que entren mejor o se vean parciales */
+        flex: 0 0 400px; 
+        height: 360px;
+    }
+
+
+    /* 4. SECCIÓN TRAYECTORIA (WORKS / PROYECTOS) */
+    .works-display-grid {
+        /* Cambiar de 2 columnas a 1 columna central */
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        max-width: 600px; /* Limitar ancho para que no se vea gigante */
+    }
+
+    .card-work-finished {
+        width: 94%; /* Adaptarse al contenedor (max 600px) */
+        height: auto; /* Altura automática para evitar cortes */
+        min-height: 550px;
+    }
+    
+    .img-content {
+        height: 300px; /* Reducir un poco la altura de la imagen */
+    }
+
+
+    /* 5. SECCIÓN CONTACTO (FORMULARIO Y DATOS) */
+    .split-layout, .contact-layout { 
+        flex-direction: column; /* Apilar formulario y datos */
+        gap: 3rem; 
+    }
+
+    .contact-form-wrapper {
+        width: 100%;
+        max-width: 700px; /* Ancho máximo para lectura cómoda */
+        margin: 0 auto;
+    }
+
+    .glass-form {
+        padding: 2rem;
+    }
+
+    .contact-info { 
+        width: 100%; 
+        padding-right: 0; 
+        text-align: center; 
+        margin-top: 2rem;
+    }
+
+    .contact-details { 
+        align-items: center; /* Centrar items flex */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .c-item { 
+        justify-content: center; 
+    }
+    
+    .social-icons-grid.align-left {
+        justify-content: center; /* Centrar redes sociales */
+    }
+
+    .form-row {
+        flex-direction: column; /* Inputs de teléfono y email uno bajo otro */
+        gap: 0; /* El margen inferior del input-group ya da el espacio */
+    }
+}
+
+
+/* --- NUEVOS ESTILOS PARA EL FORMULARIO ESTRUCTURADO --- */
+
+/* Texto descriptivo pequeño debajo del título del form */
+.form-desc-small {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+/* Fila para poner Teléfono y Email uno al lado del otro */
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+}
+/* Asegura que los inputs dentro de la fila ocupen espacio igual */
+.form-row .input-group {
+    flex: 1;
+}
+
+/* Estilo del Checkbox */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    color: var(--light-text);
+}
+.checkbox-wrapper input[type="checkbox"] {
+    accent-color: var(--primary); /* Color azul del check */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.checkbox-wrapper label {
+    cursor: pointer;
+}
+
+/* --- BOTONES SOCIALES INTEGRADOS --- */
+.form-socials {
+    margin-top: 2rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.form-socials p {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    margin-bottom: 1rem;
+}
+
+.social-icons-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.s-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    color: var(--dark);
+    border: 1px solid transparent;
+}
+
+/* Colores específicos al hacer Hover */
+.s-icon:hover { transform: translateY(-3px); color: white; }
+
+.s-icon.gmail:hover { background: #EA4335; border-color: #EA4335; }
+.s-icon.whatsapp:hover { background: #25D366; border-color: #25D366; }
+.s-icon.linkedin:hover { background: #0077B5; border-color: #0077B5; }
+.s-icon.instagram:hover { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
+    border-color: transparent; 
+}
+
+
+@media (max-width:742px){
+    .section-desc .center .big-desc{
+        max-width: 640px;
+    }
+}
+
+/* --- RESPONSIVE DEL FORMULARIO --- */
+@media (max-width: 768px) {
+    /* En móviles, la fila se vuelve columna para que no queden apretados */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* --- ESTILOS NUEVOS PARA LA BIO DEL DIRECTOR --- */
+
+.director-bio-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-top: 2rem;
+}
+
+.bio-heading {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.bio-body {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.bio-img {
+    width: 190px;
+    height: 290px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0; /* Evita que la imagen se aplaste */
+}
+
+.bio-name {
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.bio-text {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.mt-2 {
+    margin-top: 0.8rem; /* Espacio entre párrafos */
+}
+
+/* Ajuste responsive para la bio */
+@media (max-width: 576px) {
+    .bio-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .bio-heading {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* --- AJUSTE REDES SOCIALES EN INFO LATERAL --- */
+
+.info-socials {
+    margin-top: .2rem; /* Espacio separador de la hora */
+}
+
+.info-socials p {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    margin-bottom: 1rem;
+    font-weight: 600; /* Un poco más de peso para destacar */
+}
+
+/* Forzar alineación a la izquierda solo en esta sección */
+.social-icons-grid.align-left {
+    justify-content: flex-start;
+}
+
+/* Opcional: Ajuste para móviles para que vuelvan al centro si se ve muy apretado */
+@media (max-width: 992px) {
+    .social-icons-grid.align-left {
+        justify-content: center;
+    }
+    .info-socials {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 679px){
+    .contact-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .info-socials p{
+        text-align: center;
+    }
+    .text-desc-contact{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text-desc-contact p{
+        text-align: center;
+    }
+
+    #about .big-desc{
+        max-width: 580px;
+        text-align: center;
+    }
+    .about-intro-block{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .director-bio-text{
+        max-width: 520px;
+    }
+    .about-text-col{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-p{
+        max-width: 520px;
+    }
+
+    .services-intro h2{
+        font-size: 2rem;
+    }
+
+    .services-intro p{
+        max-width: 520px;
+        text-align: center;
+    }
+
+    .services-intro{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .clients-desc{
+        max-width: 414px;
+        text-align: center;
+    }
+
+    .works-desc{
+        max-width: 414px;
+        text-align: center;
+    }
+
+    .services-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .service-card{
+        max-width: 500px;
+        max-height: 720px;
+    }
+
+    .service-body-box{
+        padding: 0.8rem 1.2rem 1.2rem 1.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .items-list-container{
+        max-width: 400px;
+    }
+    .item-service-row{
+        max-width: 210px;
+    }
+
+     .item-service-row p{
+        font-size: .98rem;
+     }
+    .service-cover{
+        max-height: 184px;
+    }
+    
+}
+
+@media (max-width: 535px) {
+        .director-bio-text{
+        max-width: 420px;
+        text-align: center;
+    }
+        .about-p{
+        max-width: 420px;
+    }
+    #about .big-desc{
+        max-width: 420px;
+        text-align: center;
+    }
+       .services-intro p{
+        max-width: 420px;
+        text-align: center;
+    }
+}
+@media (max-width: 498px) {
+        .director-bio-text{
+        max-width: 400px;
+    }
+
+    #about .big-desc{
+        max-width: 450px;
+        text-align: center;
+    }
+    .service-card{
+        max-width: 420px;
+        flex-grow: none;
+    }
+
+    .service-cover {
+        max-height: 160px;
+    }
+
+    .service-cover img{
+        max-height: 100%;
+    }
+
+    .items-list-container{
+        max-width: 440px;
+    }
+    .item-service-row{
+        max-width: 180px;
+        max-height: 60px;
+        gap: 6px;
+    }
+
+     .item-service-row p{
+        font-size: .98rem;
+        max-width: 138px;
+     }
+}
+
+
+@media (max-width: 768px) {
+    
+    /* 1. Corrección Crítica de Ancho */
+    .about-img-col {
+        min-width: 100% !important; /* Forzamos que se adapte al ancho del celular */
+        width: 100%;
+    }
+
+    /* 2. Reducción de Espacios */
+    #about {
+        padding-top: 60px;    /* Menos aire arriba */
+        padding-bottom: 60px; /* Menos aire abajo */
+    }
+
+    .about-intro-block {
+        margin-bottom: 3rem; /* Acercamos el texto a lo que sigue */
+    }
+
+    .about-row {
+        gap: 2rem;       /* Menos espacio entre foto y texto */
+        margin-bottom: 3rem;
+    }
+
+    .spacer-large {
+        margin-top: 4rem; /* Reducimos la separación gigante entre secciones */
+    }
+
+    /* 3. Ajuste de Textos */
+    .about-intro-block h2 {
+        font-size: 2rem; /* Título más pequeño */
+    }
+
+    .about-subtitle {
+        font-size: 1.6rem; /* Subtítulos más pequeños */
+        text-align: center;
+    }
+
+    .about-p, .big-desc {
+        text-align: justify; /* Justificado se ve mejor en bloques de texto móvil */
+        font-size: 1rem;     /* Tamaño de lectura cómodo */
+        padding: 0 10px;     /* Pequeño margen interno */
+    }
+
+    /* 4. Imágenes */
+    .about-img-col img {
+        max-height: 250px; /* Fotos más bajas para no ocupar toda la pantalla */
+        border-radius: 10px;
+    }
+
+    /* 5. Tarjeta del Director */
+    .director-row {
+        padding: 1.5rem 1rem; /* Menos relleno interno */
+    }
+
+    .director-img-container img {
+        width: 180px; /* Foto del director más chica */
+        min-height: 240px;
+    }
+
+
+    .director-bio-text {
+        font-size: 0.95rem; /* Texto de la bio ajustado */
+        margin-bottom: 1.5rem;
+    }
+}
