@@ -78,102 +78,101 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- REFRESCAR SCROLLTRIGGER ---
-    // (Aquí estaba el error de locoScroll, lo hemos quitado)
     ScrollTrigger.refresh();
-
-    // --- LÓGICA DEL CARRUSEL DE TRABAJOS ---
-    const slider = document.getElementById('works-slider');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-
-    if (slider && prevBtn && nextBtn) {
-        
-        const moveSlider = (direction) => {
-            const card = slider.querySelector('.card-work-finished');
-            
-            if (card) {
-                // Calculamos el ancho real de la tarjeta + el gap definido en CSS
-                const cardWidth = card.offsetWidth; 
-                // Leemos el gap directamente del estilo CSS para que sea exacto
-                const style = window.getComputedStyle(slider);
-                const gap = parseFloat(style.gap) || 24; 
-                
-                const scrollAmount = cardWidth + gap;
-
-                if (direction === 'next') {
-                    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                } else {
-                    slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                }
-            }
-        };
-
-        nextBtn.addEventListener('click', () => moveSlider('next'));
-        prevBtn.addEventListener('click', () => moveSlider('prev'));
-    }
 
     // --- LÓGICA DE ACORDEÓN DE SERVICIOS ---
     const serviceHeaders = document.querySelectorAll('.service-header-box');
-
     serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
-            // Encuentra la tarjeta padre
             const card = header.parentElement;
-            
-            // Opcional: Si quieres que al abrir una se cierren las otras (Efecto Acordeón estricto)
-            // Descomenta las siguientes 3 líneas:
-            /* document.querySelectorAll('.service-card').forEach(c => {
-                if (c !== card) c.classList.remove('active');
-            });
-            */
-
-            // Alternar la clase 'active' en la tarjeta clickeada
             card.classList.toggle('active');
         });
     });
 
-    // --- LÓGICA CARRUSEL FORMACIÓN ---
+    // =========================================================
+    // --- LÓGICA CARRUSEL FORMACIÓN (1 a 1 + SCROLL FLUIDO) ---
+    // =========================================================
     const tSlider = document.getElementById('training-slider');
     const tPrevBtn = document.querySelector('.t-prev');
     const tNextBtn = document.querySelector('.t-next');
 
-    if (tSlider && tPrevBtn && tNextBtn) {
+    if (tSlider) {
         
-        tNextBtn.addEventListener('click', () => {
-            // Desplaza el ancho de una tarjeta (360) + gap (32) = aprox 392px
-            tSlider.scrollBy({ left: 392, behavior: 'smooth' });
-        });
+        // 1. NAVEGACIÓN CON FLECHAS (De 1 en 1 con cálculo preciso)
+        const moveTrainingSlider = (direction) => {
+            const card = tSlider.querySelector('.training-card');
+            
+            if (card) {
+                // Obtenemos el ancho exacto de la tarjeta visible
+                const cardWidth = card.offsetWidth;
+                
+                // Obtenemos el gap (espacio) computado del CSS
+                const style = window.getComputedStyle(tSlider);
+                // Si el gap no está definido o es 'normal', usamos 32px (2rem) como fallback seguro
+                const gapVal = parseFloat(style.columnGap) || parseFloat(style.gap);
+                const gap = !isNaN(gapVal) ? gapVal : 32;
+                
+                // Distancia exacta: 1 tarjeta + 1 espacio
+                const scrollStep = cardWidth + gap;
 
-        tPrevBtn.addEventListener('click', () => {
-            tSlider.scrollBy({ left: -392, behavior: 'smooth' });
-        });
+                if (direction === 'next') {
+                    tSlider.scrollBy({ left: scrollStep, behavior: 'smooth' });
+                } else {
+                    tSlider.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+                }
+            }
+        };
+
+        if (tNextBtn) tNextBtn.addEventListener('click', () => moveTrainingSlider('next'));
+        if (tPrevBtn) tPrevBtn.addEventListener('click', () => moveTrainingSlider('prev'));
+
+        // 2. NAVEGACIÓN CON RUEDA DEL MOUSE (Suavidad Mejorada)
+        tSlider.addEventListener('wheel', (evt) => {
+            // Evitamos el scroll vertical de la página
+            evt.preventDefault();
+            
+            // Usamos scrollBy con 'smooth' en lugar de cambiar scrollLeft directamente.
+            // Multiplicamos deltaY * 3 para darle "inercia" y evitar que el scroll-snap lo frene en seco.
+            tSlider.scrollBy({
+                left: evt.deltaY * 3, 
+                behavior: 'smooth'
+            });
+        }, { passive: false }); // Importante para que preventDefault funcione en navegadores modernos
     }
 });
 
-// --- MANEJO DEL MENÚ RESPONSIVE ---
+// --- MANEJO DEL MENÚ RESPONSIVE (CON CAMBIO DE ICONO X) ---
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('nav ul');
 const navLinks = document.querySelectorAll('nav ul li a');
+const menuIcon = menuToggle ? menuToggle.querySelector('i') : null;
 
 if (menuToggle) {
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('active');
+        
+        // Cambiar icono entre hamburguesa y X
+        if (menuIcon) {
+            if (nav.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
     });
 }
 
+// Cerrar menú al hacer clic en un link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         nav.classList.remove('active');
-    });
-});
-
-// --- EFECTO HOVER SERVICIOS ---
-const cards = document.querySelectorAll('.service-card');
-cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        gsap.to(card, { scale: 1.02, duration: 0.3 });
-    });
-    card.addEventListener('mouseleave', () => {
-        gsap.to(card, { scale: 1, duration: 0.3 });
+        
+        // Restaurar icono a hamburguesa al cerrar
+        if (menuIcon) {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
     });
 });
