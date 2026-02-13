@@ -683,7 +683,7 @@ nav a:hover::after { width: 100%; }
 }
 
 .t-info-box h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--primary);
     font-weight: 700;
     margin-bottom: 0.8rem;
@@ -1158,7 +1158,12 @@ footer p{
         scroll-snap-type: none;
     }
 
-
+    .t-img-box{
+        height: 191px;
+    }
+    .t-img-box img{
+        height: 191px;
+    }
 
     /* 1. SECCIÓN NOSOTROS (ABOUT) */
     .about-row, .reverse-row {
@@ -1213,6 +1218,14 @@ footer p{
         gap: 1rem;
     }
 
+    #training{
+        padding-top: 2.3rem;
+    }
+
+    .training-desc{
+        margin-bottom: 1.2rem;
+        padding: 0 1rem;
+    }
 
     /* 3. SECCIÓN FORMACIÓN (CARRUSEL) */
     .training-carousel-wrapper {
@@ -1226,10 +1239,20 @@ footer p{
     .training-card {
         /* Reducir un poco el ancho fijo para que entren mejor o se vean parciales */
         flex: 0 0 400px; 
-        height: 360px;
+        height: 371px;
     }
 
+    .t-info-box{
+        padding: 0.8rem;
+    }
 
+    .t-info-box p{
+        font-size: 1rem !important;
+    }
+
+    .t-info-box h4{
+        margin-bottom: .5rem;
+    }
     /* 4. SECCIÓN TRAYECTORIA (WORKS / PROYECTOS) */
     .works-display-grid {
         /* Cambiar de 2 columnas a 1 columna central */
