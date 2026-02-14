@@ -696,7 +696,7 @@ nav a:hover::after { width: 100%; }
     color: var(--light-text);
     line-height: 1.5;
     margin: 0;
-    text-align: start !important;
+    text-align: justify !important;
 }
 
 /* --- BOTONES DEL CARRUSEL --- */
