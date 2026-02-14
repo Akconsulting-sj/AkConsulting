@@ -639,6 +639,7 @@ nav a:hover::after { width: 100%; }
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     padding: 2rem 1rem;
+    margin-bottom: 2rem;
     width: 100%;
     scrollbar-width: none; /* Ocultar scrollbar Firefox */
 }

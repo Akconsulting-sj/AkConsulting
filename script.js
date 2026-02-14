@@ -6,113 +6,195 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- CONFIGURACIÓN DE SCROLL ---
     const isMobile = window.innerWidth <= 992;
     
+    // Dejamos los defaults como estaban para no romper nada.
     ScrollTrigger.defaults({
         scroller: isMobile ? window : ".scroll-container"
     });
 
     // --- ANIMACIONES HERO ---
-    const heroTimeline = gsap.timeline();
+    const heroTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#hero",
+            toggleActions: "play none none none"
+        }
+    });
     
     heroTimeline.from(".hero-content .text-reveal", {
-        y: 50, 
+        y: 50,
+        opacity: 0,
         duration: 1,
         stagger: 0.2,
         ease: "power3.out"
     });
 
+    // =========================================================
+    // --- ANIMACIONES AÑADIDAS Y CORREGIDAS ---
+    // =========================================================
+    
+    const animConfig = {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.2
+    };
+
     // --- ANIMACIONES SECCIÓN SOBRE NOSOTROS ---
-    gsap.from(".about-left", {
+    // Se eliminan .about-left y .feature-item que no existen en el HTML.
+    // Se reemplazan por animaciones para los elementos reales.
+    gsap.from(".about-intro-block > *", {
+        ...animConfig,
         scrollTrigger: {
-            trigger: "#about",
-            start: "top 75%",
-            toggleActions: "play none none reverse" 
-        },
-        x: -50,
-        duration: 1,
-        ease: "power2.out"
+            trigger: ".about-intro-block",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
     });
 
-    gsap.from(".feature-item", {
+    gsap.from(".director-row > *", {
+        ...animConfig,
+        stagger: 0.3,
         scrollTrigger: {
-            trigger: "#about",
-            start: "top 75%"
-        },
-        x: 50,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "back.out(1.7)"
+            trigger: ".director-row",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
     });
+    
+    // Animamos las 3 filas restantes de Misión, Visión y Valores
+    document.querySelectorAll('.about-row.spacer-large').forEach(row => {
+        gsap.from(row.children, {
+            ...animConfig,
+            scrollTrigger: {
+                trigger: row,
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+
 
     // --- ANIMACIONES SERVICIOS ---
+    // La animación para .service-card ya existía y funcionaba. La mantenemos.
     gsap.from(".service-card", {
         scrollTrigger: {
             trigger: "#services",
-            start: "top 70%"
+            start: "top 70%",
+            toggleActions: "play none none reverse"
         },
         y: 30,
+        opacity: 0,
         duration: 0.8,
         stagger: 0.2,
         ease: "power3.out"
     });
-
-    // --- ANIMACIONES TRABAJOS ---
-    gsap.from(".work-item", {
+    // Añadimos animación para la intro de la sección
+    gsap.from(".services-intro > *", {
+        ...animConfig,
         scrollTrigger: {
-            trigger: "#works",
-            start: "top 80%"
-        },
-        y: 30,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out"
+            trigger: ".services-intro",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
+    });
+    
+
+    // --- ANIMACIONES FORMACIÓN (TRAINING) ---
+    gsap.from("#training .section-title, #training .separator-line, #training .training-desc", {
+        ...animConfig,
+        scrollTrigger: {
+            trigger: "#training",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
     });
 
+    gsap.from(".training-card", {
+        ...animConfig,
+        stagger: 0.1,
+        scrollTrigger: {
+            trigger: ".training-carousel-wrapper",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+
+    // --- ANIMACIONES TRABAJOS ---
+    // Se corrige el selector .work-item por .card-work-finished
+    gsap.from(".card-work-finished", {
+        scrollTrigger: {
+            trigger: ".works-display-grid",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1, // Stagger más rápido para la grilla
+        ease: "power2.out"
+    });
+     // Añadimos animación para la intro de la sección
+    gsap.from("#works .section-title, #works .separator-line, #works .works-desc", {
+        ...animConfig,
+        scrollTrigger: {
+            trigger: "#works",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+
+    // --- ANIMACIÓN CLIENTES (ya existía) ---
     gsap.from(".logo-box", {
         scrollTrigger: {
             trigger: ".clients-slider",
-            start: "top 90%"
+            start: "top 90%",
+            toggleActions: "play none none reverse"
         },
         scale: 0.5,
+        opacity: 0,
         duration: 0.5,
         stagger: 0.1
     });
 
+    // --- ANIMACIÓN CONTACTO ---
+    gsap.from("#contact h2, .contact-form-wrapper, .contact-info > *", {
+        ...animConfig,
+        stagger: 0.3,
+         scrollTrigger: {
+            trigger: "#contact",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        }
+    })
+
     // --- REFRESCAR SCROLLTRIGGER ---
     ScrollTrigger.refresh();
 
-    // --- LÓGICA DE ACORDEÓN DE SERVICIOS ---
-    const serviceHeaders = document.querySelectorAll('.service-header-box');
-    serviceHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const card = header.parentElement;
-            card.classList.toggle('active');
-        });
-    });
 
     // =========================================================
-    // --- LÓGICA CARRUSEL FORMACIÓN (1 a 1 + SCROLL FLUIDO) ---
+    // --- LÓGICA ORIGINAL DEL SITIO (SIN CAMBIOS) ---
     // =========================================================
+
+    // --- LÓGICA DE ACORDEÓN DE SERVICIOS ---
+    // (Esta funcionalidad se elimina porque las tarjetas ahora son estáticas)
+
+    // --- LÓGICA CARRUSEL FORMACIÓN (1 a 1 + SCROLL FLUIDO) ---
     const tSlider = document.getElementById('training-slider');
     const tPrevBtn = document.querySelector('.t-prev');
     const tNextBtn = document.querySelector('.t-next');
 
     if (tSlider) {
         
-        // 1. NAVEGACIÓN CON FLECHAS (De 1 en 1 con cálculo preciso)
         const moveTrainingSlider = (direction) => {
             const card = tSlider.querySelector('.training-card');
             
             if (card) {
-                // Obtenemos el ancho exacto de la tarjeta visible
                 const cardWidth = card.offsetWidth;
-                
-                // Obtenemos el gap (espacio) computado del CSS
                 const style = window.getComputedStyle(tSlider);
-                // Si el gap no está definido o es 'normal', usamos 32px (2rem) como fallback seguro
                 const gapVal = parseFloat(style.columnGap) || parseFloat(style.gap);
                 const gap = !isNaN(gapVal) ? gapVal : 32;
-                
-                // Distancia exacta: 1 tarjeta + 1 espacio
                 const scrollStep = cardWidth + gap;
 
                 if (direction === 'next') {
@@ -126,18 +208,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (tNextBtn) tNextBtn.addEventListener('click', () => moveTrainingSlider('next'));
         if (tPrevBtn) tPrevBtn.addEventListener('click', () => moveTrainingSlider('prev'));
 
-        // 2. NAVEGACIÓN CON RUEDA DEL MOUSE (Suavidad Mejorada)
         tSlider.addEventListener('wheel', (evt) => {
-            // Evitamos el scroll vertical de la página
             evt.preventDefault();
-            
-            // Usamos scrollBy con 'smooth' en lugar de cambiar scrollLeft directamente.
-            // Multiplicamos deltaY * 3 para darle "inercia" y evitar que el scroll-snap lo frene en seco.
             tSlider.scrollBy({
                 left: evt.deltaY * 3, 
                 behavior: 'smooth'
             });
-        }, { passive: false }); // Importante para que preventDefault funcione en navegadores modernos
+        }, { passive: false });
     }
 });
 
@@ -151,7 +228,6 @@ if (menuToggle) {
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('active');
         
-        // Cambiar icono entre hamburguesa y X
         if (menuIcon) {
             if (nav.classList.contains('active')) {
                 menuIcon.classList.remove('fa-bars');
@@ -169,7 +245,6 @@ navLinks.forEach(link => {
     link.addEventListener('click', () => {
         nav.classList.remove('active');
         
-        // Restaurar icono a hamburguesa al cerrar
         if (menuIcon) {
             menuIcon.classList.remove('fa-times');
             menuIcon.classList.add('fa-bars');
