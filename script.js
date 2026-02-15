@@ -1,3 +1,45 @@
+// --- LÓGICA DEL PRELOADER ---
+// Global variables to track state
+let pageLoaded = false;
+let minimumTimeElapsed = false;
+
+// Function to hide the preloader
+function hidePreloader() {
+    if (pageLoaded && minimumTimeElapsed) {
+        const preloader = document.getElementById('preloader');
+        const body = document.body;
+
+        if (preloader) {
+            preloader.classList.add('preloader-hidden');
+            // Remove overflow hidden after a small delay to ensure smoother transition.
+            // This needs to be done *before* the preloader is fully gone.
+            setTimeout(() => {
+                 body.style.overflow = 'visible'; // Re-enable scrolling
+                 // Also, ensure `body` doesn't have the `.loading` class if it were added for initial overflow:hidden
+                 // (though we're setting style.overflow directly, this is good practice if a class were used)
+            }, 500); // Give some time before enabling scroll
+
+            // Ensure display: none happens after CSS transition (0.75s)
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 800);
+        }
+    }
+}
+
+// Track when the page has fully loaded
+window.onload = () => {
+    pageLoaded = true;
+    hidePreloader();
+};
+
+// Ensure a minimum display time for the preloader
+setTimeout(() => {
+    minimumTimeElapsed = true;
+    hidePreloader();
+}, 1500); // Preloader stays for at least 1.5 seconds
+
+
 // Esperar a que el DOM cargue
 document.addEventListener("DOMContentLoaded", () => {
     
