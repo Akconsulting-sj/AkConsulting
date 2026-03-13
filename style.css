@@ -969,6 +969,10 @@ nav a:hover::after { width: 100%; }
         height: auto;
         min-height: 550px;
     }
+    .clients-slider {
+    flex-wrap: wrap;
+    }
+    
 }
 /* --- CONTACT SECTION --- */
 #contact {
@@ -1138,6 +1142,9 @@ footer p{
 @media (max-width: 950px){
     .about-intro-block{
         max-width: 82%;
+    }
+    .clients-slider {
+    flex-wrap: wrap;
     }
 }
 /* --- RESPONSIVE --- */
@@ -1656,6 +1663,9 @@ footer p{
  .contact-form-wrapper{
     min-width: 400px;
  }
+    .clients-slider {
+    flex-wrap: wrap;
+    }
     #about .big-desc{
         max-width: 450px;
         text-align: center;
