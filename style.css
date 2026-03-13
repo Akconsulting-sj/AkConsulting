@@ -942,7 +942,7 @@ nav a:hover::after { width: 100%; }
 .clients-slider {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 3rem;
     align-items: center;
 }
