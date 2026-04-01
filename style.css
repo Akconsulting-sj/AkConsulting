@@ -1762,6 +1762,8 @@ footer p{
 
     /* 5. Tarjeta del Director */
     .director-row {
+        margin: 0 0.8rem;
+        flex-direction: column-reverse;
         padding: 1.5rem 1rem; /* Menos relleno interno */
     }
 
@@ -1774,8 +1776,8 @@ footer p{
     .director-bio-text {
 
 
-            font-size: 0.95rem; /* Texto de la bio ajustado */
-
+            font-size: 0.8rem; /* Texto de la bio ajustado */
+            text-align: justify;
 
             margin-bottom: 1.5rem;
 
