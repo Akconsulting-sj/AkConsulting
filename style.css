@@ -323,7 +323,7 @@ nav a:hover::after { width: 100%; }
 }
 
 .about-p {
-    font-size: .8rem;
+  
     line-height: 1.7;
     color: var(--dark);
     text-align: justify; /* Para que se vea bloque limpio */
@@ -342,10 +342,10 @@ nav a:hover::after { width: 100%; }
 
 
 .director-bio-text {
-    
+    font-size: 1.05rem;
     text-align: justify;
     color: var(--dark);
-    line-height: 1.8;
+    line-height: 1.1;
     border-left: 4px solid var(--accent);
     padding-left: 1.5rem;
 }
@@ -1120,7 +1120,7 @@ footer p{
 
 @media (max-width:1416px){
     .about-row{
-        max-width: 1000px;
+        max-width: 1065px;
     }
     .about-p{
         max-width: 520px;
