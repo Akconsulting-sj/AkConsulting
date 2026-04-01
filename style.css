@@ -1195,7 +1195,7 @@ footer p{
 
     /* 1. SECCIÓN NOSOTROS (ABOUT) */
     .about-row, .reverse-row {
-        flex-direction: column; /* Apilar verticalmente */
+        flex-direction: column-reverse; /* Apilar verticalmente */
         gap: 2rem;
         text-align: center;
     }
